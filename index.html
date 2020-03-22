@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Tip Calculator</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+
+
+
+</head>
+<body>
+
+	<h1 id="heading">TIP CALCULATOR</h1>
+
+	<div id="container">
+		
+
+		<div>
+			<label>Bill amount</label>
+			<input type="number" placeholder=" enter the total amount.." id="bill-amt">
+		</div>
+
+		<div>
+			<label>Tip percent (2% - 18%)</label>
+			<input type="range" min="2" max="18" value="2" id="tip-per">
+			<span id="tip-output"></span>
+		</div>
+
+		<div>
+			<label>Split (number of people upto 10)</label>
+			<input type="range" min="1" max="10" value="1" id="split">
+			<span id="split-output"></span>
+		</div>
+
+		<div>
+			<label>Tip amount (per person)</label>
+			<input type="text" placeholder=" tip distributed amount" id="new-tip-total" disabled="">
+			<span id="new_tip"></span>
+		</div>
+
+		<div>
+			<label>new bill (per person)</label>
+			<input type="text" placeholder=" bill distributed amount" id="new-bill-total" disabled="on">
+			<span id="new_bill"></span>
+		</div>	
+
+		<div>
+			<label>Total billed</label>
+			<input type="text" placeholder=" complete amount " id="total-bill" disabled="on">
+			<span id="total_bill"></span>
+		</div><br>
+
+	<!--	<button type="button" class="btn btn-success" onclick="calculate();"> calculate bill</button>  -->
+
+	</div>
+
+	<script type="text/javascript">
+		
+		document.getElementById('container').onchange = function()
+		 {
+			var bill = Number(document.getElementById('bill-amt').value);
+
+			var tip_percent = document.getElementById('tip-per').value;
+
+			var split = document.getElementById('split').value;
+
+			var tip_value = bill * (tip_percent / 100);
+
+			var new_bill_each = (bill + tip_value) / split;
+
+			var tip_each = tip_value / split;
+
+			var total = tip_value + bill;
+			
+			// Add all attributes to a variable
+			var tip_amt = document.getElementById('new-tip-total');
+			var new_bill = document.getElementById('new-bill-total');
+			var total_bill = document.getElementById('total-bill');
+
+			document.getElementById('tip-output').innerHTML = tip_percent + "%";
+
+			document.getElementById('split-output').innerHTML = split;
+
+			new_bill.value = "$" + new_bill_each.toFixed(2);
+			tip_amt.value = "$" + tip_each.toFixed(2);
+			total_bill.value = "$" + total.toFixed(2);
+
+
+		}
+
+
+
+	</script>
+
+</body>
+</html>
